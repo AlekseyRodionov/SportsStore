@@ -15,20 +15,16 @@ namespace SportsStore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseDeveloperExceptionPage(); //отображает детали исключений в браузере
+            app.UseStatusCodePages(); // добавляет сообщения в HTTP ответы
+            app.UseStaticFiles(); // включает поддержку статики
+            app.UseMvc(routes => { }); // включает MVC 
         }
     }
 }
