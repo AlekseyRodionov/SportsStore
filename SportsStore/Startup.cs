@@ -26,7 +26,11 @@ namespace SportsStore
             app.UseDeveloperExceptionPage(); //отображает детали исключений в браузере
             app.UseStatusCodePages(); // добавляет сообщения в HTTP ответы
             app.UseStaticFiles(); // включает поддержку статики
-            app.UseMvc(routes => { }); // включает MVC 
+            app.UseMvc(routes => {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Product}/{action=List}/{id?}");
+            }); // включает MVC, маршрутизация 
         }
     }
 }
